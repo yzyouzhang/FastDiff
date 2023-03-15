@@ -3,7 +3,7 @@ processed_data_dir: 'data/processed/ljspeech'
 binary_data_dir: 'data/binary/ljspeech'
 pre_align_cls: egs.datasets.audio.lj.pre_align.LJPreAlign
 binarization_args:
-  with_spk_embed: false
+  with_spk_embed: true
 
 pitch_type: frame
 mel_loss: "ssim:0.5|l1:0.5"

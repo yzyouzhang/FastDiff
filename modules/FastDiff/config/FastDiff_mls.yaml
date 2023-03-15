@@ -1,7 +1,7 @@
 base_config:
   - ./base.yaml
 
-audio_sample_rate: 22050
+audio_sample_rate: 16000
 raw_data_dir: 'data/raw/MLS'
 processed_data_dir: 'data/processed/MLS'
 binary_data_dir: 'data/binary/MLS'

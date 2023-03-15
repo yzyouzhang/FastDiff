@@ -60,7 +60,7 @@ class VocoderPreAlign:
         meta_data = []
         for idx, inp_args in enumerate(tqdm(self.meta_data(), desc='Load meta data')):
             meta_data.append(inp_args)
-            item_name, wav_fn = inp_args
+            item_name, wav_fn, _, _ = inp_args
             args.append([
                 idx, item_name, wav_fn, processed_dir, self.pre_align_args
             ])
@@ -68,7 +68,7 @@ class VocoderPreAlign:
         assert len(item_names) == len(set(item_names)), 'Key `item_name` should be Unique.'
 
         for inp_args, res in zip(tqdm(meta_data, 'Processing'), chunked_multiprocess_run(self.process_job, args)):
-            item_name, wav_fn = inp_args
+            item_name, wav_fn, _, _ = inp_args
             if res is None:
                 print(f"| Skip {wav_fn}.")
                 continue

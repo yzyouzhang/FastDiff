@@ -2,7 +2,7 @@
 # Custom dataset preprocess
 #############
 audio_num_mel_bins: 80
-audio_sample_rate: 22050
+audio_sample_rate: 16000
 hop_size: 256  # For 22050Hz, 275 ~= 12.5 ms (0.0125 * sample_rate)
 win_size: 1024  # For 22050Hz, 1100 ~= 50 ms (If None, win_size: fft_size) (0.05 * sample_rate)
 fmin: 80  # Set this to 55 if your speaker is male! if female, 95 should help taking off noise. (To test depending on dataset. Pitch info: male~[65, 260], female~[100, 525])
@@ -60,7 +60,7 @@ num_valid_plots: 10
 #############
 # Stage 1 of data processing
 #############
-pre_align_cls: egs.datasets.audio.pre_align.PreAlign
+pre_align_cls: egs.datasets.audio.mls.pre_align.MLSPreAlign
 pre_align_args:
   nsample_per_mfa_group: 1000
   txt_processor: en

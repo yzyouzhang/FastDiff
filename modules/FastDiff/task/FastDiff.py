@@ -56,7 +56,7 @@ class FastDiffTask(VocoderBaseTask):
 
     def validation_step(self, sample, batch_idx):
         mels = sample['mels']
-        y = sample['wavs']
+        y = sample['wavs'].cuda()
         X = (mels, y)
         loss = theta_timestep_loss(self.model, X, self.diffusion_hyperparams)
         return loss, {'loss': loss}
@@ -64,7 +64,7 @@ class FastDiffTask(VocoderBaseTask):
 
     def test_step(self, sample, batch_idx):
         mels = sample['mels']
-        y = sample['wavs']
+        y = sample['wavs'].cuda()
         loss_output = {}
 
         if hparams['noise_schedule'] != '':

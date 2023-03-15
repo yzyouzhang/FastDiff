@@ -11,6 +11,7 @@ def pre_align():
 
     pkg = ".".join(hparams["pre_align_cls"].split(".")[:-1])
     cls_name = hparams["pre_align_cls"].split(".")[-1]
+    # print(cls_name)
     process_cls = getattr(importlib.import_module(pkg), cls_name)
     process_cls().process()
 
