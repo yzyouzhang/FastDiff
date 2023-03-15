@@ -39,12 +39,17 @@ class FastDiffTask(VocoderBaseTask):
                 diffusion_hyperparams[key] = diffusion_hyperparams[key].cuda()
         self.diffusion_hyperparams = diffusion_hyperparams
 
+        self.model = self.model.cuda()
+
         return self.model
 
     def _training_step(self, sample, batch_idx, optimizer_idx):
         mels = sample['mels']
-        y = sample['wavs']
+        y = sample['wavs'].cuda()
         X = (mels, y)
+        # print(self.model.parameters().device)
+        # print(X[0].get_device())
+        # print(X[1].get_device())
         loss = theta_timestep_loss(self.model, X, self.diffusion_hyperparams)
         return loss, {'loss': loss}
 

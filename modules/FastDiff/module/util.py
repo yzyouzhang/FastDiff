@@ -315,6 +315,7 @@ def theta_timestep_loss(net, X, diffusion_hyperparams, reverse=False):
     z = std_normal(audio.shape)
     delta = (1 - alpha[ts] ** 2.).sqrt()
     alpha_cur = alpha[ts]
+    # print(alpha_cur.get_device(), audio.get_device(), delta.get_device(), z.get_device())
     noisy_audio = alpha_cur * audio + delta * z  # compute x_t from q(x_t|x_0)
     epsilon_theta = net((noisy_audio, mel_spectrogram, ts.view(B, 1),))
 

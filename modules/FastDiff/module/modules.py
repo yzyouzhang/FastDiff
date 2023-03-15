@@ -198,8 +198,9 @@ class TimeAware_LVCBlock(torch.nn.Module):
         '''
         x, audio_down, c, noise_embedding = data
         batch, in_channels, in_length = x.shape
-
+        c = c.cuda()
         noise = (self.fc_t(noise_embedding)).unsqueeze(-1)  # (B, 80)
+        # print(c.get_device(), noise.get_device())
         condition = c + noise  # (B, 80, T)
         kernels, bias = self.kernel_predictor(condition)
         x = F.leaky_relu(x, 0.2)
